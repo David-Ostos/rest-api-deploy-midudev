@@ -1,25 +1,26 @@
 const express = require('express')
 const picocolors = require('picocolors')
 const crypto = require('node:crypto')
-const movies = require('./movies.json')
 const cors = require('cors')
+
+const movies = require('./movies.json')
 const { validateMovie, validatePartialMovie } = require('./schemas/movies')
 
 const app = express()
 
 app.use(express.json())
 app.use(cors({
-  origin: (origin, cb) => {
+  origin: (origin, callback) => {
     const ACCEPTEP_ORIGINS = [
       'http://localhost:8080',
       'http://localhost:3002'
     ]
 
-    if (ACCEPTEP_ORIGINS.includes(origin)) return cb(null, true)
+    if (ACCEPTEP_ORIGINS.includes(origin)) return callback(null, true)
 
-    if (!origin) cb(null, true)
+    if (!origin) return callback(null, true)
 
-    return cb(null, true)
+    return callback(new Error('not allowed by CORS'))
   }
 }))
 
@@ -28,7 +29,8 @@ app.disable('x-powered-by')
 // method GET
 
 app.get('/movies', (req, res) => {
-  /*  const origin = req.header('origin')
+  /*
+  const origin = req.header('origin')
   if (ACCEPTEP_ORIGINS.includes(origin) || !origin) {
     res.header('Access-Control-Allow-Origin', origin)
   } */
@@ -115,7 +117,7 @@ app.delete('/movies/:id', (req, res) => {
   return res.json({ message: 'Movie deleted successfully' })
 })
 
-const PORT = process.env.PORT || 3002
+const PORT = process.env.PORT ?? 3002
 
 app.listen(PORT, () => {
   console.log(picocolors.blue('listening on port: http://localhost:' + PORT))
