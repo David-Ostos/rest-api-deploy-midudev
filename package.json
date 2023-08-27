@@ -1,9 +1,10 @@
 {
-  "name": "clase_3-express",
+  "name": "rest-api",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon",
     "dev:2": "node --watch app.js "
