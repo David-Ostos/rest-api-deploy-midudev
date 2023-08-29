@@ -5,6 +5,10 @@ GET http://localhost:3002/movies
 
 GET http://localhost:3002/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
 
+### recuperar una pelicula por id MongoDB
+
+GET http://localhost:3002/movies/64ed52a8da8cacbcebc0badd
+
 ### recuperar todas las peliculas por un genero
 
 GET http://localhost:3002/movies?genre=sci-fi
@@ -13,20 +17,22 @@ GET http://localhost:3002/movies?genre=sci-fi
 POST http://localhost:3002/movies/
 Content-Type: application/json
 
-{
-  "title": "The Godfather",
-  "year": 1975,
-  "director": "Francis Ford Coppola",
-  "duration": 175,
-  "poster": "https://img.fruugo.com/product/4/49/14441494_max.jpg",
-  "genre": [
-    "Crime",
-    "Drama"
-  ]
-}
+  {
+    "id": "5ad1a235-0d9c-410a-b32b-220d91689a08",
+    "title": "Inception",
+    "year": 2010,
+    "director": "Christopher Nolan",
+    "duration": 148,
+    "poster": "https://m.media-amazon.com/images/I/91Rc8cAmnAL._AC_UF1000,1000_QL80_.jpg",
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ]
+  }
 
 ### actualizar una movies
-PATCH http://localhost:3002/movies/bcc4daa4-54de-4780-aaef-8d0edc7da44e
+PATCH http://localhost:3002/movies/73044b56-6200-49ec-a0c8-1394ba6ecaff
 Content-Type: application/json
 
 {
